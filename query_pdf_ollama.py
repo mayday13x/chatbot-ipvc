@@ -90,13 +90,24 @@ def main():
     llm = Ollama(
         model="llama3:instruct", 
         temperature=0.1,
-        system_prompt="Você é um assistente da faculdade do Instituto Politénico de Viana do Castelo que responde sempre em português portugal. Analise os documentos fornecidos e responda as perguntas de forma clara e detalhada em português."
+        system_prompt="""És um assistente especializado do Instituto Politécnico de Viana do Castelo. 
+        A tua função é analisar TODOS os documentos disponíveis e responder a perguntas de forma completa e precisa.
+        IMPORTANTE:
+        - SEMPRE procura a informação em TODOS os documentos disponíveis
+        - NUNCA digas que a informação não está presente sem teres verificado TODOS os documentos
+        - Se encontrares a informação em qualquer documento, utiliza-a imediatamente
+        - Se não encontrares a informação exata, procura informações relacionadas ou contextuais
+        - Responde sempre em português de Portugal
+        - Sê proativo e detalhado nas respostas
+        - Se a informação estiver presente, NUNCA digas que não a encontraste
+        - Se a pergunta não estiver relacionada com o IPVC, responde de forma simpática que só podes responder a questões relacionadas com o IPVC
+        - Explica sempre de forma educada e simpática quando uma pergunta está fora do teu âmbito de conhecimento"""
     )
 
     query_engine = index.as_query_engine(
         llm=llm,
-        similarity_top_k=10,
-        response_mode="compact"
+        similarity_top_k=20,
+        response_mode="tree_summarize"
     )
 
     print("\n[5] Pronto para perguntas (digite 'sair' para encerrar).")
@@ -106,7 +117,13 @@ def main():
             break
 
         # Adiciona instrução em português na pergunta
-        pergunta_formatada = f"Responda em português: {pergunta}"
+        pergunta_formatada = f"""Analisa TODOS os documentos disponíveis e responde em português: {pergunta}
+        IMPORTANTE: 
+        - Procura a informação em TODOS os documentos
+        - Se encontrares a informação, responde imediatamente
+        - Não digas que não encontraste a informação sem teres verificado todos os documentos
+        - Sê detalhado e preciso na resposta
+        - Se a pergunta não estiver relacionada com o IPVC, explica de forma simpática que só podes responder a questões do IPVC"""
         resposta = query_engine.query(pergunta_formatada)
         print("\n📝 Resposta:")
         print(str(resposta))
