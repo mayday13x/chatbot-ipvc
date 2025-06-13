@@ -1,0 +1,34 @@
+    <div class="chat-container">
+        <div class="chat-header">
+            <img src="{{ url_for('static', filename='logo.png') }}" alt="IPVC Logo" class="logo">
+            <h1>IPVC Assistant</h1>
+        </div>
+        <div class="chat-messages" id="chat-messages">
+            <div class="message bot-message">
+                <div class="message-content">
+                    Olá! Sou o assistente virtual do IPVC. Como posso ajudar?
+                </div>
+            </div>
+        </div>
+        <div class="loading-animation" id="loading-animation" style="display: none;">
+            <div class="message bot-message">
+                <div class="message-content">
+                    <span class="thinking">Pensando</span>
+                    <span class="dots">
+                        <span class="dot">.</span>
+                        <span class="dot">.</span>
+                        <span class="dot">.</span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="chat-input-container">
+            <textarea id="user-input" placeholder="Digite sua mensagem..." rows="1"></textarea>
+            <button id="send-button">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M22 2L11 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M22 2L15 22L11 13L2 9L22 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+        </div>
+    </div> 
