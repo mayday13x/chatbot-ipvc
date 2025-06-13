@@ -1,0 +1,18 @@
+{
+  "name": "chatbot-ipvc-root",
+  "version": "1.0.0",
+  "description": "Backend e Frontend para o Chatbot do IPVC",
+  "main": "index.js",
+  "scripts": {
+    "start-backend": "python app.py",
+    "start-frontend": "cd frontend && serve .",
+    "start": "concurrently \"npm run start-backend\" \"wait-on http://localhost:5000 && npm run start-frontend\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "wait-on": "^7.2.0"
+  }
+} 

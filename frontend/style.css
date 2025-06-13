@@ -1,0 +1,315 @@
+body {
+    font-family: 'Inter', sans-serif; /* Fonte similar ao ChatGPT */
+    margin: 0;
+    background-color: #f7f7f8; /* Fundo claro */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: #333;
+}
+
+.app-container {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    max-width: 1300px; /* Limitar largura para desktop */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: #fff;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #202123; /* Fundo escuro da sidebar do ChatGPT */
+    color: #ececf1;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #3e3f42;
+    padding-bottom: 15px;
+}
+
+.sidebar-header .logo {
+    height: 35px;
+    margin-right: 10px;
+}
+
+.sidebar-header span {
+    font-size: 1.1em;
+    font-weight: 600;
+}
+
+.new-chat-button {
+    background-color: #3e3f42;
+    color: #ececf1;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 12px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 500;
+    margin-bottom: 10px;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.new-chat-button:hover {
+    background-color: #4c4d50;
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.main-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+}
+
+.chat-window {
+    flex-grow: 1;
+    padding: 20px 20px 100px 20px; /* Espaço para o input flutuante */
+    overflow-y: auto;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Mais espaço entre as mensagens */
+    scrollbar-width: thin;
+    scrollbar-color: #dcdcdc #f0f0f0;
+}
+
+.chat-window::-webkit-scrollbar {
+    width: 8px;
+}
+
+.chat-window::-webkit-scrollbar-track {
+    background: #f0f0f0;
+}
+
+.chat-window::-webkit-scrollbar-thumb {
+    background-color: #dcdcdc;
+    border-radius: 10px;
+    border: 2px solid #f0f0f0;
+}
+
+.message-container {
+    display: flex;
+    align-items: flex-start;
+    padding: 15px 0;
+    border-bottom: 1px solid #f0f0f0; /* Separador sutil */
+}
+
+.message-container.user {
+    justify-content: flex-end;
+}
+
+.message-container.bot {
+    justify-content: flex-start;
+}
+
+.message-avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 15px;
+    background-color: #1A1A1A; /* Fundo do avatar do bot */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #F7931E;
+    font-weight: bold;
+    font-size: 0.9em;
+    flex-shrink: 0;
+}
+
+.message-avatar.user {
+    background-color: #F7931E;
+    color: white;
+    margin-left: 15px; /* Inverter margem para o user */
+    margin-right: 0;
+}
+
+.message-content {
+    max-width: 70%; /* Ajustar largura da bolha */
+    padding: 10px 15px;
+    border-radius: 8px;
+    line-height: 1.5;
+    font-size: 0.95em;
+    white-space: pre-wrap; /* Preserva quebras de linha e espaços */
+    word-wrap: break-word;
+}
+
+.message-content.user {
+    background-color: #e6e6e6; /* Cor da bolha do utilizador */
+    color: #333;
+}
+
+.message-content.bot {
+    background-color: #f7f7f8; /* Cor da bolha do bot */
+    color: #333;
+    border: 1px solid #e0e0e0;
+}
+
+.input-area {
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    background-color: #fff;
+    border-top: 1px solid #e0e0e0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+
+.input-wrapper {
+    display: flex;
+    align-items: flex-end; /* Alinhar items ao fundo para o textarea */
+    width: 100%;
+    max-width: 760px; /* Limitar largura do input */
+    background-color: #f0f0f0; /* Fundo do input */
+    border: 1px solid #e0e0e0;
+    border-radius: 24px;
+    padding: 8px 15px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.input-wrapper textarea {
+    flex-grow: 1;
+    border: none;
+    outline: none;
+    resize: none; /* Desativar redimensionamento manual */
+    background-color: transparent;
+    font-size: 1em;
+    padding: 8px 0;
+    max-height: 200px; /* Limite de altura para o textarea */
+    overflow-y: auto;
+    scrollbar-width: thin; /* Firefox */
+    scrollbar-color: #dcdcdc #f0f0f0;
+}
+
+.input-wrapper textarea::-webkit-scrollbar {
+    width: 6px;
+}
+
+.input-wrapper textarea::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.input-wrapper textarea::-webkit-scrollbar-thumb {
+    background-color: #dcdcdc;
+    border-radius: 10px;
+}
+
+.input-wrapper button {
+    background: none;
+    border: none;
+    color: #1A1A1A; /* Cor escura do logo IPVC */
+    cursor: pointer;
+    padding: 8px;
+    margin-left: 10px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.2s ease;
+}
+
+.input-wrapper button:hover:not(:disabled) {
+    background-color: #e0e0e0;
+}
+
+.input-wrapper button:disabled {
+    color: #ccc;
+    cursor: not-allowed;
+}
+
+.send-icon {
+    width: 20px;
+    height: 20px;
+}
+
+/* Loading indicator */
+.message.loading .message-content {
+    background-color: #f0f0f0; /* Fundo ligeiramente diferente para o loading */
+    border: 1px solid #d0d0d0;
+    color: #1A1A1A;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 60px; /* Garante que a caixa é visível */
+    min-height: 20px; /* Garante espaço para os pontos */
+    padding: 10px 15px; /* Adiciona padding explícito */
+    border-radius: 8px; /* Mantém o arredondamento */
+}
+
+.message.loading .dot {
+    display: inline-block;
+    width: 12px; /* Ligeiramente maior */
+    height: 12px; /* Ligeiramente maior */
+    background-color: #F7931E; /* Cor laranja/amarela do logo IPVC */
+    border-radius: 50%;
+    margin: 0 5px; /* Mais espaço entre os pontos */
+    animation: dotPulse 1.0s infinite ease-in-out; /* Ajuste na duração e timing */
+}
+
+.message.loading .dot:nth-child(1) { animation-delay: 0s; }
+.message.loading .dot:nth-child(2) { animation-delay: 0.15s; } /* Ajuste no delay */
+.message.loading .dot:nth-child(3) { animation-delay: 0.3s; } /* Ajuste no delay */
+
+@keyframes dotPulse {
+    0% { transform: scale(0.7); opacity: 0.5; }
+    50% { transform: scale(1.1); opacity: 1; }
+    100% { transform: scale(0.7); opacity: 0.5; }
+}
+
+/* Responsividade básica */
+@media (max-width: 768px) {
+    .app-container {
+        flex-direction: column;
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+    .sidebar {
+        width: 100%;
+        height: auto;
+        padding: 10px 0;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    }
+
+    .sidebar-header {
+        justify-content: center;
+        border-bottom: none;
+    }
+
+    .new-chat-button {
+        margin: 10px 20px;
+    }
+
+    .main-content {
+        flex-grow: 1;
+    }
+
+    .input-area {
+        padding: 15px;
+    }
+
+    .input-wrapper {
+        border-radius: 20px;
+    }
+
+    .message-content {
+        max-width: 85%;
+    }
+} 

@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.pyc
+*.pyd
+*.pyo
+.Python/
+env/
+venv/
+*.env
+.history/
+
+# Node.js
+node_modules/
+npm-debug.log
+yarn-debug.log
+.pnpm-debug.log
+
+# LlamaIndex / Chatbot Specific
+pdfs/
+pdf_texts_cache/
+.ipynb_checkpoints/
+
+# IDE / OS Specific
+.idea/
+.vscode/
+.DS_Store
+thumbs.db 

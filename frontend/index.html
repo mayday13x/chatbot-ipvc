@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot IPVC</title>
+    <link rel="icon" href="assets/favicon.png" type="image/png">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <img src="assets/ipvc_logo.png" alt="IPVC Logo" class="logo">
+                <span>Chatbot IPVC</span>
+            </div>
+            <button class="new-chat-button">+ Novo Chat</button>
+            <!-- Futuramente: Histórico de conversas -->
+        </div>
+        <div class="main-content">
+            <div class="chat-window" id="chat-window">
+                <!-- As mensagens do chat serão adicionadas aqui -->
+            </div>
+            <div class="input-area">
+                <div class="input-wrapper">
+                    <textarea id="user-input" placeholder="Envie uma mensagem..." rows="1"></textarea>
+                    <button id="send-button" title="Enviar mensagem">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="send-icon">
+                            <path d="M20.31,3.46,3.46,10.63a.5.5,0,0,0,.08.91l6.73,3.13a1,1,0,0,1,.56.56l3.13,6.73a.5.5,0,0,0,.91.08L20.54,3.69A.5.5,0,0,0,20.31,3.46Z"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 
